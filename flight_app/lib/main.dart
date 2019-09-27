@@ -283,7 +283,7 @@ CityCard(
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal:8.0),
       child: ClipRRect(
-        borderRadius: BorderRadius.all(Radius.circular(20)),
+        borderRadius: BorderRadius.all(Radius.circular(10)),
 
               child: Stack(
           children: <Widget>[
