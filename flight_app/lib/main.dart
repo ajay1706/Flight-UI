@@ -282,8 +282,11 @@ CityCard(
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal:8.0),
-      child: Stack(
-        children: <Widget>[
+      child: ClipRRect(
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+
+              child: Stack(
+          children: <Widget>[
 
 Container(
   height: 210,
@@ -292,8 +295,9 @@ Container(
   fit: BoxFit.cover,),
 )
 
-        ],
-        
+          ],
+          
+        ),
       ),
     );
   }
