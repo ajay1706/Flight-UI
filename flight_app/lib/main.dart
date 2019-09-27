@@ -98,11 +98,42 @@ PopupMenuItem(
 
 
 ]
-  )
+  ),
+  Spacer(),
+  Icon(Icons.settings,color: Colors.white,)
+
   
     ],
   ),
-)
+),
+SizedBox(height: 50,),
+Text("Where would\nyou want to go?",style:TextStyle(fontSize: 24,color:Colors.white,),textAlign: TextAlign.center,),
+SizedBox(
+height: 30,
+),
+Padding(
+  padding: EdgeInsets.symmetric(horizontal: 32),
+  child: Material(
+    elevation: 5.0,
+   borderRadius: BorderRadius.all(Radius.circular(30)),
+   child: TextField(
+     controller: TextEditingController(text: locations[1]),
+     style:dropdownMenuItemStyle ,
+
+     cursorColor: appTheme.primaryColor,
+    
+     decoration: InputDecoration( 
+       contentPadding: EdgeInsets.symmetric(horizontal:32,vertical: 13 ), 
+       suffixIcon: Material(
+         elevation: 2.0,
+         borderRadius: BorderRadius.all(Radius.circular(30.0)),
+         child: Icon(Icons.search,color: Colors.black,),
+       ),
+       border: InputBorder.none
+     ),
+   ),
+  ),)
+  
 
            ],
          ),
