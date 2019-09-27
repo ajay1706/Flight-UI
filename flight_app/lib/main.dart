@@ -1,5 +1,6 @@
 import 'package:flight_app/custom_shape_clipper.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 void main() => runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -242,23 +243,26 @@ var homeScreenBottom = Column(
       ),
     ),
     Container(
-      height: 210,
+      height: 240,
       child: ListView(scrollDirection: Axis.horizontal, children: cityCards),
     )
   ],
 );
 
 List<CityCard> cityCards = [
-  CityCard("Las Vegas", "45", "assets/images/lasvegas.jpg", "Feb 2019", "2250",
-      "4299"),
+  CityCard("Las Vegas", "45", "assets/images/lasvegas.jpg", "Feb 2019", 2250,
+      4299),
   CityCard(
-      "Athens", "50", "assets/images/athens.jpg", "Apr 2019", "4359", "9999"),
+      "Athens", "50", "assets/images/athens.jpg", "Apr 2019", 4359, 9999),
   CityCard(
-      "Sydney", "48", "assets/images/sydney.jpeg", "Dec 2019", "2399", "5999"),
+      "Sydney", "48", "assets/images/sydney.jpeg", "Dec 2019", 2399, 5999),
 ];
 
+final formatCurrency = NumberFormat.simpleCurrency();
+
 class CityCard extends StatelessWidget {
-  final String imagePath, cityName, monthYear, discount, oldPrice, newPrice;
+  final String imagePath, cityName, monthYear, discount;
+  int oldPrice, newPrice;
 
   CityCard(this.cityName, this.discount, this.imagePath, this.monthYear,
       this.newPrice, this.oldPrice);
@@ -267,80 +271,116 @@ class CityCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: ClipRRect(
-        borderRadius: BorderRadius.all(Radius.circular(10)),
-        child: Stack(
-          children: <Widget>[
-            Container(
-              height: 210,
-              width: 160,
-              child: Image.asset(
-                imagePath,
-                fit: BoxFit.cover,
-              ),
-            ),
-            Positioned(
-              left: 0,
-              bottom: 0,
-              width: 160,
-              height: 60,
-              child: Container(
-                decoration: BoxDecoration(  
-                  gradient: LinearGradient(
-                    begin: Alignment.bottomCenter,
-                    end: Alignment.topCenter,
-                    colors: [
-                      Colors.black,
-                      Colors.black.withOpacity(0.1)
-                    ]
-                  )
+      child: Column(
+        children: <Widget>[
+          ClipRRect(
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+            child: Stack(
+              children: <Widget>[
+                Container(
+                  height: 210,
+                  width: 160,
+                  child: Image.asset(
+                    imagePath,
+                    fit: BoxFit.cover,
+                  ),
                 ),
-              ),
+                Positioned(
+                  left: 0,
+                  bottom: 0,
+                  width: 160,
+                  height: 60,
+                  child: Container(
+                    decoration: BoxDecoration(  
+                      gradient: LinearGradient(
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.topCenter,
+                        colors: [
+                          Colors.black,
+                          Colors.black.withOpacity(0.1)
+                        ]
+                      )
+                    ),
+                  ),
 
-            ),
-            Positioned(
-              left: 10,
-              bottom: 10,
-              right: 10,
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                ),
+                Positioned(
+                  left: 10,
+                  bottom: 10,
+                  right: 10,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text(cityName,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                              fontSize: 18)),
-                      Text(monthYear,
-                          style: TextStyle(
-                              fontWeight: FontWeight.normal,
-                              color: Colors.white,
-                              fontSize: 14))
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(cityName,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  fontSize: 18)),
+                          Text(monthYear,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.white,
+                                  fontSize: 14))
+                        ],
+                      ),
+                      Container(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 6.0, vertical: 2.0),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.rectangle,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10.0),
+                          ),
+                        ),
+                        child: Text(
+                          '$discount%',
+                          style: TextStyle(fontSize: 14.0, color: Colors.black,),
+                        ),
+                      ),
                     ],
                   ),
-                  Container(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 6.0, vertical: 2.0),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.rectangle,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10.0),
-                      ),
-                    ),
-                    child: Text(
-                      '$discount%',
-                      style: TextStyle(fontSize: 14.0, color: Colors.black),
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+         Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              SizedBox(
+                width: 6.0,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top:8.0),
+                child: Text(
+                  '${formatCurrency.format(newPrice)}',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 14.0),
+                ),
+              ),
+              SizedBox(
+                width: 6.0,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top:8.0),
+                child: Text(
+                  "(${formatCurrency.format(oldPrice)})",
+                  style: TextStyle(
+                      color: Colors.grey,
+                      fontWeight: FontWeight.normal,
+                      fontSize: 12.0),
+                ),
+              ),
+            ],
+          )  
+        ],
       ),
     );
   }
