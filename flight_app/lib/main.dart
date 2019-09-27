@@ -1,3 +1,4 @@
+import 'package:flight_app/custom_appbar.dart';
 import 'package:flight_app/custom_shape_clipper.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -8,11 +9,11 @@ void main() => runApp(MaterialApp(
       theme: appTheme,
     ));
 
-Color firstColor = Color(0xFFF47D15);
-Color secondColor = Color(0xFFEF772C);
+Color firstColor = Colors.teal;
+Color secondColor = Colors.cyan;
 
 ThemeData appTheme =
-    ThemeData(primaryColor: Color(0xFFF3791A), fontFamily: "Oxygen");
+    ThemeData(primaryColor: Colors.teal, fontFamily: "Oxygen",);
 
 List<String> locations = ['Boston [BOS]', 'New York City [JFK]'];
 
@@ -20,6 +21,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: CustomAppBar(),
       body: Column(
         children: <Widget>[
           HomeScreenTopPart(),
@@ -33,7 +35,7 @@ class HomeScreen extends StatelessWidget {
 const TextStyle dropdownLableStyle =
     TextStyle(color: Colors.white, fontSize: 16);
 const TextStyle dropdownMenuItemStyle =
-    TextStyle(color: Colors.black, fontSize: 16);
+    TextStyle(color: Colors.black, fontSize: 16,fontWeight: FontWeight.bold);
 
 class HomeScreenTopPart extends StatefulWidget {
   @override
@@ -118,6 +120,7 @@ class _HomeScreenTopPartState extends State<HomeScreenTopPart> {
                   style: TextStyle(
                     fontSize: 24,
                     color: Colors.white,
+                    fontWeight: FontWeight.bold
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -226,7 +229,7 @@ class _ChoiceChipState extends State<ChoiceChip> {
   }
 }
 
-var viewAllStyle = TextStyle(fontSize: 14, color: appTheme.primaryColor);
+var viewAllStyle = TextStyle(fontSize: 14, color: appTheme.primaryColor,fontWeight: FontWeight.w900);
 
 var homeScreenBottom = Column(
   children: <Widget>[
@@ -374,7 +377,7 @@ class CityCard extends StatelessWidget {
                   "(${formatCurrency.format(oldPrice)})",
                   style: TextStyle(
                       color: Colors.grey,
-                      fontWeight: FontWeight.normal,
+                      fontWeight: FontWeight.w600,
                       fontSize: 12.0),
                 ),
               ),
