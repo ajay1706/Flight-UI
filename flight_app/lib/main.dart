@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
       body: Column(
         children: <Widget>[
           HomeScreenTopPart(),
-           homeScreenBottom,
+          homeScreenBottom,
         ],
       ),
     );
@@ -227,76 +227,119 @@ class _ChoiceChipState extends State<ChoiceChip> {
 
 var viewAllStyle = TextStyle(fontSize: 14, color: appTheme.primaryColor);
 
-var homeScreenBottom =  Column(
-children: <Widget>[
-
-  Padding(
-    padding: const EdgeInsets.all(16.0),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      mainAxisSize: MainAxisSize.max,
-      children: <Widget>[
-Text("Currently Wtached Items", style:dropdownMenuItemStyle),
-Spacer(),
-Text("VIEW ALl", style:viewAllStyle),
-
-      ],
+var homeScreenBottom = Column(
+  children: <Widget>[
+    Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisSize: MainAxisSize.max,
+        children: <Widget>[
+          Text("Currently Wtached Items", style: dropdownMenuItemStyle),
+          Spacer(),
+          Text("VIEW ALl", style: viewAllStyle),
+        ],
+      ),
     ),
-  ),
-Container(
-  height: 210,
-  child:   ListView(  
-    scrollDirection: Axis.horizontal,
-    children:cityCards
-  ),
-)
-],
+    Container(
+      height: 210,
+      child: ListView(scrollDirection: Axis.horizontal, children: cityCards),
+    )
+  ],
 );
 
-
 List<CityCard> cityCards = [
-CityCard("Las Vegas" , "45", "assets/images/lasvegas.jpg","Feb 2019","2250","4299"),
-CityCard("Athens" , "50", "assets/images/athens.jpg","Apr 2019","4359","9999"),
-CityCard("Sydney" , "48", "assets/images/sydney.jpeg","Dec 2019","2399","5999"),
-
-
-
+  CityCard("Las Vegas", "45", "assets/images/lasvegas.jpg", "Feb 2019", "2250",
+      "4299"),
+  CityCard(
+      "Athens", "50", "assets/images/athens.jpg", "Apr 2019", "4359", "9999"),
+  CityCard(
+      "Sydney", "48", "assets/images/sydney.jpeg", "Dec 2019", "2399", "5999"),
 ];
 
 class CityCard extends StatelessWidget {
+  final String imagePath, cityName, monthYear, discount, oldPrice, newPrice;
 
-final String imagePath  , cityName , monthYear, discount , oldPrice , newPrice ;
-
-
-CityCard(  
-  this.cityName,
-  this.discount,
-  this.imagePath,
-  this.monthYear,
-  this.newPrice,
-  this.oldPrice
-
-);
+  CityCard(this.cityName, this.discount, this.imagePath, this.monthYear,
+      this.newPrice, this.oldPrice);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal:8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: ClipRRect(
         borderRadius: BorderRadius.all(Radius.circular(10)),
-
-              child: Stack(
+        child: Stack(
           children: <Widget>[
+            Container(
+              height: 210,
+              width: 160,
+              child: Image.asset(
+                imagePath,
+                fit: BoxFit.cover,
+              ),
+            ),
+            Positioned(
+              left: 0,
+              bottom: 0,
+              width: 160,
+              height: 60,
+              child: Container(
+                decoration: BoxDecoration(  
+                  gradient: LinearGradient(
+                    begin: Alignment.bottomCenter,
+                    end: Alignment.topCenter,
+                    colors: [
+                      Colors.black,
+                      Colors.black.withOpacity(0.1)
+                    ]
+                  )
+                ),
+              ),
 
-Container(
-  height: 210,
-  width: 160,
-  child: Image.asset(imagePath,
-  fit: BoxFit.cover,),
-)
-
+            ),
+            Positioned(
+              left: 10,
+              bottom: 10,
+              right: 10,
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(cityName,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontSize: 18)),
+                      Text(monthYear,
+                          style: TextStyle(
+                              fontWeight: FontWeight.normal,
+                              color: Colors.white,
+                              fontSize: 14))
+                    ],
+                  ),
+                  Container(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 6.0, vertical: 2.0),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.rectangle,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10.0),
+                      ),
+                    ),
+                    child: Text(
+                      '$discount%',
+                      style: TextStyle(fontSize: 14.0, color: Colors.black),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
-          
         ),
       ),
     );
