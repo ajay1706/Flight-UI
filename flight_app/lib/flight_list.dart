@@ -123,7 +123,7 @@ class FlightCard extends StatelessWidget {
       children: <Widget>[
          Container(
            padding: EdgeInsets.only(right: 16),
-           height: 100,
+        
            decoration: BoxDecoration(  
              borderRadius: BorderRadius.all(Radius.circular(10)),
              border: Border.all(color: flightBorderColor),
@@ -131,15 +131,27 @@ class FlightCard extends StatelessWidget {
               child:Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Row(
                       children: <Widget>[
                       
                         Text("${formatCurrency.format(4159)}",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
-                        SizedBox(width: 10,),
-                         Text("${formatCurrency.format(9999)}",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,decoration: TextDecoration.lineThrough,color: Colors.grey),),
+                        SizedBox(width: 4,),
+                         Text("(${formatCurrency.format(9999)})",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,decoration: TextDecoration.lineThrough,color: Colors.grey),),
 
                         ],
+                    ),
+                    Wrap(
+                      spacing: 8.0,
+                      children: <Widget>[
+                        FlightDetailChip(Icons.calendar_today, 'June 2019'),
+                         FlightDetailChip(Icons.flight_takeoff, 'Jet Airways'),
+                        FlightDetailChip(Icons.star, '4.4'),
+
+
+
+                      ],
                     )
                   ],
                 ),
@@ -149,6 +161,27 @@ class FlightCard extends StatelessWidget {
       
     )
       ],
+    );
+  }
+}
+
+class FlightDetailChip extends StatelessWidget {
+  final IconData iconData;
+  final String label;
+  FlightDetailChip(this.iconData,this.label );
+  @override
+  Widget build(BuildContext context) {
+    return RawChip(
+      padding: EdgeInsets.all(-8),
+      label: Text(label),
+      labelStyle: TextStyle(color: Colors.black,fontSize: 14),
+      backgroundColor: chipBackgroundColor,
+      avatar:Icon(iconData,size: 14,) ,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(10))
+      ),
+
+      
     );
   }
 }
