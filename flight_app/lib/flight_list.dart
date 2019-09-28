@@ -1,5 +1,6 @@
 import 'package:flight_app/custom_shape_clipper.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import './main.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 
@@ -126,7 +127,18 @@ class FlightCard extends StatelessWidget {
              borderRadius: BorderRadius.all(Radius.circular(10)),
              border: Border.all(color: flightBorderColor),
               ),
-              child: ,
+              child:Column(
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      
+                      Text("${formatCurrency.format(4159)}",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+                       Text("${formatCurrency.format(9999)}",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,decoration: TextDecoration.lineThrough),),
+
+                      ],
+                  )
+                ],
+              ) ,
       
 
       
