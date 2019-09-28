@@ -21,7 +21,8 @@ CustomAppBar(){
    bottomBarItem.add(
     BottomNavigationBarItem(
       title: Text("Deals",style: TextStyle(color: Colors.black),),
-      icon:Icon(Icons.local_offer,color: Colors.black,) )
+      icon:Icon(Icons.local_offer,color: Colors.black,),
+     )
 
   );
 
