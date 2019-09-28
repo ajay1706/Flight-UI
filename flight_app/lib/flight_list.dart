@@ -114,6 +114,7 @@ class FlightListBottomPart extends StatelessWidget {
         SizedBox(height:10 ,),
        ListView(
          shrinkWrap: true,
+         physics: ClampingScrollPhysics(),
          scrollDirection: Axis.vertical,
          children: <Widget>[
             FlightCard(),
