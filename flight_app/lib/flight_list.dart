@@ -117,7 +117,10 @@ class FlightListBottomPart extends StatelessWidget {
          physics: ClampingScrollPhysics(),
          scrollDirection: Axis.vertical,
          children: <Widget>[
-            FlightCard(),
+        FlightCard(),
+        FlightCard(),
+        FlightCard(),
+        FlightCard(),
         FlightCard(),
         FlightCard()
          ],
@@ -136,11 +139,11 @@ class FlightCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical:8.0),
+      padding: const EdgeInsets.symmetric(vertical:8.0,),
       child: Stack(
         children: <Widget>[
            Container(
-             padding: EdgeInsets.only(right: 16),
+           margin: EdgeInsets.only(right: 16),
           
              decoration: BoxDecoration(  
                borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -149,13 +152,13 @@ class FlightCard extends StatelessWidget {
                 child:Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Row(
                         children: <Widget>[
                         
                           Text("${formatCurrency.format(4159)}",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
-                          SizedBox(width: 4,),
+                          SizedBox(width: 8,),
                            Text("(${formatCurrency.format(9999)})",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,decoration: TextDecoration.lineThrough,color: Colors.grey),),
 
                           ],
