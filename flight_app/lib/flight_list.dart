@@ -26,12 +26,15 @@ class FlightListScreen extends StatelessWidget {
           } 
           ),
       ),
-      body:Column(
-        children: <Widget>[
-          FlightListTopPart(),
-          SizedBox(height: 20,),
-          FlightListBottomPart(),
-        ],
+      body:SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+              child: Column(
+          children: <Widget>[
+            FlightListTopPart(),
+            SizedBox(height: 20,),
+            FlightListBottomPart(),
+          ],
+        ),
       ) ,
       
     );
@@ -109,7 +112,15 @@ class FlightListBottomPart extends StatelessWidget {
           child: Text("Best Deals for Next 6 Months", style: dropdownMenuItemStyle),
         ),
         SizedBox(height:10 ,),
+       ListView(
+         shrinkWrap: true,
+         scrollDirection: Axis.vertical,
+         children: <Widget>[
+            FlightCard(),
+        FlightCard(),
         FlightCard()
+         ],
+       )
 
         ],
       ),
@@ -123,56 +134,59 @@ class FlightListBottomPart extends StatelessWidget {
 class FlightCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-         Container(
-           padding: EdgeInsets.only(right: 16),
-        
-           decoration: BoxDecoration(  
-             borderRadius: BorderRadius.all(Radius.circular(10)),
-             border: Border.all(color: flightBorderColor),
-              ),
-              child:Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Row(
-                      children: <Widget>[
-                      
-                        Text("${formatCurrency.format(4159)}",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
-                        SizedBox(width: 4,),
-                         Text("(${formatCurrency.format(9999)})",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,decoration: TextDecoration.lineThrough,color: Colors.grey),),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical:8.0),
+      child: Stack(
+        children: <Widget>[
+           Container(
+             padding: EdgeInsets.only(right: 16),
+          
+             decoration: BoxDecoration(  
+               borderRadius: BorderRadius.all(Radius.circular(10)),
+               border: Border.all(color: flightBorderColor),
+                ),
+                child:Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Row(
+                        children: <Widget>[
+                        
+                          Text("${formatCurrency.format(4159)}",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+                          SizedBox(width: 4,),
+                           Text("(${formatCurrency.format(9999)})",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,decoration: TextDecoration.lineThrough,color: Colors.grey),),
+
+                          ],
+                      ),
+                      Wrap(
+                        spacing: 8.0,
+                        runSpacing: -8,
+                        children: <Widget>[
+                          FlightDetailChip(Icons.calendar_today, 'June 2019'),
+                           FlightDetailChip(Icons.flight_takeoff, 'Jet Airways'),
+                          FlightDetailChip(Icons.star, '4.4'),
+
+
 
                         ],
-                    ),
-                    Wrap(
-                      spacing: 8.0,
-                      runSpacing: -8,
-                      children: <Widget>[
-                        FlightDetailChip(Icons.calendar_today, 'June 2019'),
-                         FlightDetailChip(Icons.flight_takeoff, 'Jet Airways'),
-                        FlightDetailChip(Icons.star, '4.4'),
-
-
-
-                      ],
-                    )
-                  ],
-                ),
-              ) ,
-    ),
-    Positioned(
-      top: 10,
-      right: 0,
-          child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 8,vertical: 4),
-            
-            child: Text("55%",style:TextStyle(color: appTheme.primaryColor,fontSize: 14, fontWeight: FontWeight.bold)
+                      )
+                    ],
+                  ),
+                ) ,
       ),
-      decoration: BoxDecoration(color:discountBackgroundColor, borderRadius: BorderRadius.all(Radius.circular(10)) ),),
-    )
-      ],
+      Positioned(
+        top: 10,
+        right: 0,
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 8,vertical: 4),
+              
+              child: Text("55%",style:TextStyle(color: appTheme.primaryColor,fontSize: 14, fontWeight: FontWeight.bold)
+        ),
+        decoration: BoxDecoration(color:discountBackgroundColor, borderRadius: BorderRadius.all(Radius.circular(10)) ),),
+      )
+        ],
+      ),
     );
   }
 }
