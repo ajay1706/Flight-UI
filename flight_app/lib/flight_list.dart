@@ -122,22 +122,27 @@ class FlightCard extends StatelessWidget {
     return Stack(
       children: <Widget>[
          Container(
+           padding: EdgeInsets.only(right: 16),
            height: 100,
            decoration: BoxDecoration(  
              borderRadius: BorderRadius.all(Radius.circular(10)),
              border: Border.all(color: flightBorderColor),
               ),
-              child:Column(
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
+              child:Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
                       
-                      Text("${formatCurrency.format(4159)}",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
-                       Text("${formatCurrency.format(9999)}",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,decoration: TextDecoration.lineThrough),),
+                        Text("${formatCurrency.format(4159)}",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+                        SizedBox(width: 10,),
+                         Text("${formatCurrency.format(9999)}",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16,decoration: TextDecoration.lineThrough,color: Colors.grey),),
 
-                      ],
-                  )
-                ],
+                        ],
+                    )
+                  ],
+                ),
               ) ,
       
 
