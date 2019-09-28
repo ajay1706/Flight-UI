@@ -28,12 +28,14 @@ class FlightListScreen extends StatelessWidget {
       body:Column(
         children: <Widget>[
           FlightListTopPart(),
+          FlightListBottomPart(),
         ],
       ) ,
       
     );
   }
 }
+
 
 
 class FlightListTopPart extends StatelessWidget {
@@ -87,6 +89,49 @@ class FlightListTopPart extends StatelessWidget {
       ],
 
       
+    );
+  }
+}
+
+
+class FlightListBottomPart extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(left: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+        Text("Best Deals for Next 6 Months", style: dropdownMenuItemStyle),
+        SizedBox(height:10 ,),
+        FlightCard()
+
+        ],
+      ),
+
+      
+    );
+  }
+}
+
+
+class FlightCard extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: <Widget>[
+         Container(
+           height: 100,
+           decoration: BoxDecoration(  
+             borderRadius: BorderRadius.all(Radius.circular(10)),
+             border: Border.all(color: flightBorderColor),
+              ),
+              child: ,
+      
+
+      
+    )
+      ],
     );
   }
 }
