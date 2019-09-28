@@ -1,6 +1,7 @@
 import 'package:flight_app/custom_shape_clipper.dart';
 import 'package:flutter/material.dart';
 import './main.dart';
+import 'package:gradient_app_bar/gradient_app_bar.dart';
 
 final Color discountBackgroundColor = Colors.tealAccent.shade200;
 final Color flightBorderColor = Color(0xFFE6E6E6);
@@ -10,9 +11,12 @@ class FlightListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: GradientAppBar(
         elevation: 0.0,
-        title: Text("Search Result"),
+        title: Text("Search Result",style: TextStyle(fontFamily: "Oxygen"),),
+        gradient: LinearGradient(colors: [
+          Colors.teal,Colors.cyan
+        ]),
         centerTitle: true,
         leading: InkWell(
           child: Icon(Icons.arrow_back),
@@ -53,21 +57,26 @@ class FlightListTopPart extends StatelessWidget {
               margin: EdgeInsets.symmetric(horizontal: 16),
               elevation: 10,
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal:16, vertical: 20),
+                padding: EdgeInsets.symmetric(horizontal:20, vertical: 24),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text("Boston [BOS]", style:TextStyle(fontSize:16.0, )),
-                        Divider(color: Colors.grey,),
-                        Text("New York City [JFK]", style:TextStyle(fontSize:16.0,fontWeight: FontWeight.bold )),
-                      ],
+                    Expanded(
+                      flex: 5,
+                                          child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text("Boston [BOS]", style:TextStyle(fontSize:16.0, )),
+                          Divider(color: Colors.grey,),
+                          Text("New York City [JFK]", style:TextStyle(fontSize:16.0,fontWeight: FontWeight.bold )),
+                        ],
+                      ),
                     ),
-                    Icon(Icons.import_export,color:Colors.black)
+                    Spacer(),
+                    Expanded(
+                      flex: 1,
+                      child: Icon(Icons.import_export,color:Colors.black, size: 32,))
                   ],
 
                 ),
