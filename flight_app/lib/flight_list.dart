@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import './main.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 
-final Color discountBackgroundColor = Colors.tealAccent.shade200;
+final Color discountBackgroundColor = Colors.teal.withOpacity(0.2);
 final Color flightBorderColor = Color(0xFFE6E6E6);
 final Color chipBackgroundColor = Color(0xFFF6F6F6);
 
@@ -184,8 +184,9 @@ class FlightCard extends StatelessWidget {
         right: 0,
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 8,vertical: 4),
+              margin: EdgeInsets.only(right: 8.0),
               
-              child: Text("55%",style:TextStyle(color: appTheme.primaryColor,fontSize: 14, fontWeight: FontWeight.bold)
+              child: Text("55%",style:TextStyle(color: appTheme.primaryColor,fontSize: 14, fontWeight: FontWeight.w600)
         ),
         decoration: BoxDecoration(color:discountBackgroundColor, borderRadius: BorderRadius.all(Radius.circular(10)) ),),
       )
