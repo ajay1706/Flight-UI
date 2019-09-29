@@ -1,5 +1,7 @@
 # Flight-UI
 A Flight Application in Flutter
 
-<img src="ss1.png" alt="drawing" style="width:500px;"/>
-<img src="ss2.png" alt="drawing" style="width:500px;"/>
+
+
+<img src="screenshots/ss1.png" width="200">
+<img src="screenshots/ss2.png" width="200">
